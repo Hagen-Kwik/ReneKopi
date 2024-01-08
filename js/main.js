@@ -1,49 +1,49 @@
-;(function () {
-	
+; (function () {
+
 	'use strict';
 
 	var isMobile = {
-		Android: function() {
+		Android: function () {
 			return navigator.userAgent.match(/Android/i);
 		},
-			BlackBerry: function() {
+		BlackBerry: function () {
 			return navigator.userAgent.match(/BlackBerry/i);
 		},
-			iOS: function() {
+		iOS: function () {
 			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
 		},
-			Opera: function() {
+		Opera: function () {
 			return navigator.userAgent.match(/Opera Mini/i);
 		},
-			Windows: function() {
+		Windows: function () {
 			return navigator.userAgent.match(/IEMobile/i);
 		},
-			any: function() {
+		any: function () {
 			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
 		}
 	};
 
-	var mobileMenuOutsideClick = function() {
+	var mobileMenuOutsideClick = function () {
 
 		$(document).click(function (e) {
-	    var container = $("#fh5co-offcanvas, .js-fh5co-nav-toggle");
-	    if (!container.is(e.target) && container.has(e.target).length === 0) {
+			var container = $("#fh5co-offcanvas, .js-fh5co-nav-toggle");
+			if (!container.is(e.target) && container.has(e.target).length === 0) {
 
-	    	if ( $('body').hasClass('offcanvas') ) {
+				if ($('body').hasClass('offcanvas')) {
 
-    			$('body').removeClass('offcanvas');
-    			$('.js-fh5co-nav-toggle').removeClass('active');
-				
-	    	}
-	    
-	    	
-	    }
+					$('body').removeClass('offcanvas');
+					$('.js-fh5co-nav-toggle').removeClass('active');
+
+				}
+
+
+			}
 		});
 
 	};
 
 
-	var offcanvasMenu = function() {
+	var offcanvasMenu = function () {
 
 		$('#page').prepend('<div id="fh5co-offcanvas" />');
 		$('#page').prepend('<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle fh5co-nav-white"><i></i></a>');
@@ -58,42 +58,42 @@
 			.removeClass('has-dropdown');
 
 		// Hover dropdown menu on mobile
-		$('.offcanvas-has-dropdown').mouseenter(function(){
+		$('.offcanvas-has-dropdown').mouseenter(function () {
 			var $this = $(this);
 
 			$this
 				.addClass('active')
 				.find('ul')
-				.slideDown(500, 'easeOutExpo');				
-		}).mouseleave(function(){
+				.slideDown(500, 'easeOutExpo');
+		}).mouseleave(function () {
 
 			var $this = $(this);
 			$this
 				.removeClass('active')
 				.find('ul')
-				.slideUp(500, 'easeOutExpo');				
+				.slideUp(500, 'easeOutExpo');
 		});
 
 
-		$(window).resize(function(){
+		$(window).resize(function () {
 
-			if ( $('body').hasClass('offcanvas') ) {
+			if ($('body').hasClass('offcanvas')) {
 
-    			$('body').removeClass('offcanvas');
-    			$('.js-fh5co-nav-toggle').removeClass('active');
-				
-	    	}
+				$('body').removeClass('offcanvas');
+				$('.js-fh5co-nav-toggle').removeClass('active');
+
+			}
 		});
 	};
 
 
-	var burgerMenu = function() {
+	var burgerMenu = function () {
 
-		$('body').on('click', '.js-fh5co-nav-toggle', function(event){
+		$('body').on('click', '.js-fh5co-nav-toggle', function (event) {
 			var $this = $(this);
 
 
-			if ( $('body').hasClass('overflow offcanvas') ) {
+			if ($('body').hasClass('overflow offcanvas')) {
 				$('body').removeClass('overflow offcanvas');
 			} else {
 				$('body').addClass('overflow offcanvas');
@@ -104,11 +104,11 @@
 		});
 	};
 
-	var fullHeight = function() {
+	var fullHeight = function () {
 
-		if ( !isMobile.any() ) {
+		if (!isMobile.any()) {
 			$('.js-fullheight').css('height', $(window).height());
-			$(window).resize(function(){
+			$(window).resize(function () {
 				$('.js-fullheight').css('height', $(window).height());
 			});
 		}
@@ -117,46 +117,46 @@
 
 
 
-	var contentWayPoint = function() {
+	var contentWayPoint = function () {
 		var i = 0;
-		$('.animate-box').waypoint( function( direction ) {
+		$('.animate-box').waypoint(function (direction) {
 
-			if( direction === 'down' && !$(this.element).hasClass('animated-fast') ) {
-				
+			if (direction === 'down' && !$(this.element).hasClass('animated-fast')) {
+
 				i++;
 
 				$(this.element).addClass('item-animate');
-				setTimeout(function(){
+				setTimeout(function () {
 
-					$('body .animate-box.item-animate').each(function(k){
+					$('body .animate-box.item-animate').each(function (k) {
 						var el = $(this);
-						setTimeout( function () {
+						setTimeout(function () {
 							var effect = el.data('animate-effect');
-							if ( effect === 'fadeIn') {
+							if (effect === 'fadeIn') {
 								el.addClass('fadeIn animated-fast');
-							} else if ( effect === 'fadeInLeft') {
+							} else if (effect === 'fadeInLeft') {
 								el.addClass('fadeInLeft animated-fast');
-							} else if ( effect === 'fadeInRight') {
+							} else if (effect === 'fadeInRight') {
 								el.addClass('fadeInRight animated-fast');
 							} else {
 								el.addClass('fadeInUp animated-fast');
 							}
 
 							el.removeClass('item-animate');
-						},  k * 200, 'easeInOutExpo' );
+						}, k * 200, 'easeInOutExpo');
 					});
-					
+
 				}, 100);
-				
+
 			}
 
-		} , { offset: '85%' } );
+		}, { offset: '85%' });
 	};
 
 
-	var dropdown = function() {
+	var dropdown = function () {
 
-		$('.has-dropdown').mouseenter(function(){
+		$('.has-dropdown').mouseenter(function () {
 
 			var $this = $(this);
 			$this
@@ -164,7 +164,7 @@
 				.css('display', 'block')
 				.addClass('animated-fast fadeInUpMenu');
 
-		}).mouseleave(function(){
+		}).mouseleave(function () {
 			var $this = $(this);
 
 			$this
@@ -176,20 +176,20 @@
 	};
 
 
-	var goToTop = function() {
+	var goToTop = function () {
 
-		$('.js-gotop').on('click', function(event){
-			
+		$('.js-gotop').on('click', function (event) {
+
 			event.preventDefault();
 
 			$('html, body').animate({
 				scrollTop: $('html').offset().top
 			}, 500, 'easeInOutExpo');
-			
+
 			return false;
 		});
 
-		$(window).scroll(function(){
+		$(window).scroll(function () {
 
 			var $win = $(window);
 			if ($win.scrollTop() > 200) {
@@ -198,121 +198,121 @@
 				$('.js-top').removeClass('active');
 			}
 
-			if ( $win.scrollTop() > 100 ) {
+			if ($win.scrollTop() > 100) {
 				$('.fh5co-nav').addClass('scrolled');
 			} else {
 				$('.fh5co-nav').removeClass('scrolled');
 			}
 
 		});
-	
+
 	};
 
 
 	// Loading page
-	var loaderPage = function() {
+	var loaderPage = function () {
 		$(".fh5co-loader").fadeOut("slow");
 	};
 
 
-	var counterWayPoint = function() {
-		if ($('#fh5co-counter').length > 0 ) {
-			$('#fh5co-counter').waypoint( function( direction ) {
-										
-				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
-					setTimeout( counter , 400);					
+	var counterWayPoint = function () {
+		if ($('#fh5co-counter').length > 0) {
+			$('#fh5co-counter').waypoint(function (direction) {
+
+				if (direction === 'down' && !$(this.element).hasClass('animated')) {
+					setTimeout(counter, 400);
 					$(this.element).addClass('animated');
 				}
-			} , { offset: '90%' } );
+			}, { offset: '90%' });
 		}
 	};
 
-	var sliderMain = function() {
-		
-	  	$('#fh5co-slider-wrwap .flexslider').flexslider({
+	var sliderMain = function () {
+
+		$('#fh5co-slider-wrwap .flexslider').flexslider({
 			animation: "fade",
 			slideshowSpeed: 5000,
 			directionNav: true,
-			start: function(){
-				setTimeout(function(){
+			start: function () {
+				setTimeout(function () {
 					$('.slider-text').removeClass('animated fadeInUp');
 					$('.flex-active-slide').find('.slider-text').addClass('animated fadeInUp');
 				}, 500);
 			},
-			before: function(){
-				setTimeout(function(){
+			before: function () {
+				setTimeout(function () {
 					$('.slider-text').removeClass('animated fadeInUp');
 					$('.flex-active-slide').find('.slider-text').addClass('animated fadeInUp');
 				}, 500);
 			}
 
-	  	});
+		});
 
-	  	$('#fh5co-slider-wrwap .flexslider .slides > li').css('height', $(window).height());	
-	  	$(window).resize(function(){
-	  		$('#fh5co-slider-wrwap .flexslider .slides > li').css('height', $(window).height());	
-	  	});
+		$('#fh5co-slider-wrwap .flexslider .slides > li').css('height', $(window).height());
+		$(window).resize(function () {
+			$('#fh5co-slider-wrwap .flexslider .slides > li').css('height', $(window).height());
+		});
 
-	  	
+
 	};
 
-	var parallax = function() {
-		if ( !isMobile.any() ) {
+	var parallax = function () {
+		if (!isMobile.any()) {
 			$(window).stellar();
 		}
 	};
 
-	var DateTimePickerFunc = function() {
+	var DateTimePickerFunc = function () {
 		if ($('#taskdatetime').length > 0) {
 			$('#taskdatetime').datetimepicker();
 		}
 	}
 
-	var zoomFunc = function() {
+	var zoomFunc = function () {
 		if ($('.zoomerang').length > 0) {
-	   	// Zoomerang.config({maxHeight:730,maxWidth:900}).listen('.zoomerang');
+			// Zoomerang.config({maxHeight:730,maxWidth:900}).listen('.zoomerang');
 
-	   	$('.fh5co-bg-img').each(function(){
-	   		$(this).css('width', '100%');
-	   	});
-	   	Zoomerang
-                .config({
-                    maxHeight: 900,
-                    maxWidth: 800,
-                    bgColor: '#000',
-                    bgOpacity: .85,
-                    onOpen: openCallback,
-                    onClose: closeCallback,
-                    onBeforeOpen: beforeOpenCallback,
-                    onBeforeClose: beforeCloseCallback
-                })
-                .listen('.zoomerang')
+			$('.fh5co-bg-img').each(function () {
+				$(this).css('width', '100%');
+			});
+			Zoomerang
+				.config({
+					maxHeight: 900,
+					maxWidth: 800,
+					bgColor: '#000',
+					bgOpacity: .85,
+					onOpen: openCallback,
+					onClose: closeCallback,
+					onBeforeOpen: beforeOpenCallback,
+					onBeforeClose: beforeCloseCallback
+				})
+				.listen('.zoomerang')
 
-            function openCallback (el) {
-                console.log('zoomed in on: ')
-                // console.log(el)
-            }
+			function openCallback(el) {
+				console.log('zoomed in on: ')
+				// console.log(el)
+			}
 
-            function closeCallback (el) {
-                console.log('zoomed out on: ')
-                // console.log(el)
-            }
+			function closeCallback(el) {
+				console.log('zoomed out on: ')
+				// console.log(el)
+			}
 
-            function beforeOpenCallback (el) {
-            	console.log('on before zoomed in on:')
-            	// console.log(el)
-            }
+			function beforeOpenCallback(el) {
+				console.log('on before zoomed in on:')
+				// console.log(el)
+			}
 
-            function beforeCloseCallback (el) {
-            	console.log('on before zoomed out on:')
-            	// console.log(el)
-            }
+			function beforeCloseCallback(el) {
+				console.log('on before zoomed out on:')
+				// console.log(el)
+			}
 
-	   }
+		}
 	}
 
-	
-	$(function(){
+
+	$(function () {
 		mobileMenuOutsideClick();
 		offcanvasMenu();
 		burgerMenu();
@@ -326,49 +326,50 @@
 		parallax();
 		DateTimePickerFunc();
 
-		$('.fh5co-bg-img').each(function(){
-   		$(this).css('width', '100%');
-   	});
+		$('.fh5co-bg-img').each(function () {
+			$(this).css('width', '100%');
+		});
 		// zoomFunc();
 	});
 
-	$(document).ready(function(){
-    // Select all links with hashes
-    $('a[href*="#"]')
-        // Remove links that don't actually link to anything
-        .not('[href="#"]')
-        .not('[href="#0"]')
-        .click(function(event) {
-            // On-page links
-            if (
-                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
-                && location.hostname == this.hostname
-            ) {
-                // Figure out element to scroll to
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                // Does a scroll target exist?
-                if (target.length) {
-                    // Only prevent default if animation is actually gonna happen
-                    event.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000, function() {
-                        // Callback after animation
-                        // Must change focus!
-                        var $target = $(target);
-                        $target.focus();
-                        if ($target.is(":focus")) { // Checking if the target was focused
-                            return false;
-                        } else {
-                            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
-                            $target.focus(); // Set focus again
-                        };
-                    });
-                }
-            }
-        });
-});
+	$(document).ready(function () {
+		// Select all links with hashes
+		$('a[href*="#"]')
+			// Remove links that don't actually link to anything
+			.not('[href="#"]')
+			.not('[href="#0"]')
+			.click(function (event) {
+				console.log("Link clicked: ", this.hash);
+				// On-page links
+				if (
+					location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+					&& location.hostname == this.hostname
+				) {
+					// Figure out element to scroll to
+					var target = $(this.hash);
+					target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+					// Does a scroll target exist?
+					if (target.length) {
+						// Only prevent default if animation is actually gonna happen
+						event.preventDefault();
+						$('html, body').animate({
+							scrollTop: target.offset().top
+						}, 1000, function () {
+							// Callback after animation
+							// Must change focus!
+							var $target = $(target);
+							$target.focus();
+							if ($target.is(":focus")) { // Checking if the target was focused
+								return false;
+							} else {
+								$target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+								$target.focus(); // Set focus again
+							};
+						});
+					}
+				}
+			});
+	});
 
 
 
